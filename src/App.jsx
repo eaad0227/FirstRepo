@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ServicesCarousel from './components/ServicesCarousel'
 import Services from './components/Services'
 import About from './components/About'
 import Contact from './components/Contact'
@@ -12,6 +13,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <ServicesCarousel />
         <Services />
         <About />
         <Contact />
