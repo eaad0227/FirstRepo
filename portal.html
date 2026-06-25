@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Customer Portal | IT n Cloud Solutions</title>
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-deep: #0a1730;
+    --blue: #3b82f6;
+    --blue-light: #60a5fa;
+    --text-light: #cbd5e1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header a.back {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  header a.back:hover { color: #fff; }
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .card {
+    max-width: 560px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(59,130,246,0.12);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--blue-light);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    margin: 0 0 16px;
+  }
+  h1 span { color: var(--blue-light); }
+  p.sub {
+    color: var(--text-light);
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0 0 36px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    text-align: left;
+    margin-bottom: 36px;
+  }
+  .feature {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text-light);
+  }
+  .feature strong {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 13px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn:hover { opacity: 0.85; }
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+  }
+  @media (max-width: 520px) {
+    .features { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <a href="./" class="logo">
+      <span class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18" height="18">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg>
+      </span>
+      IT n Cloud Solutions
+    </a>
+    <a href="./" class="back">&larr; Back to site</a>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="badge">CUSTOMER PORTAL</div>
+      <h1>Your dashboard is <span>coming soon</span></h1>
+      <p class="sub">
+        We're building a secure portal where you'll be able to view your services,
+        monitoring status, and support history in real time.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <strong>Service Status</strong>
+          Live view of your monitored systems
+        </div>
+        <div class="feature">
+          <strong>Support Tickets</strong>
+          Track open and resolved requests
+        </div>
+        <div class="feature">
+          <strong>Usage &amp; Billing</strong>
+          Clear breakdown of your plan
+        </div>
+        <div class="feature">
+          <strong>Reports</strong>
+          Weekly summaries of your IT health
+        </div>
+      </div>
+      <div class="cta-row">
+        <a href="./#contact" class="btn btn-primary">Contact Us for Access</a>
+        <a href="./" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 IT n Cloud Solutions. All rights reserved.</footer>
+</body>
+</html>
