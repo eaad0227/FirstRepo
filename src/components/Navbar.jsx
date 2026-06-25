@@ -30,6 +30,7 @@ export default function Navbar() {
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="portal.html" className="navbar-portal">Customer Portal</a></li>
             <li><a href="#contact" className="navbar-cta">Get Started</a></li>
           </ul>
           <button
@@ -45,6 +46,7 @@ export default function Navbar() {
         <a href="#services" onClick={close}>Services</a>
         <a href="#about" onClick={close}>About</a>
         <a href="#contact" onClick={close}>Contact</a>
+        <a href="portal.html" onClick={close}>Customer Portal</a>
         <a href="#contact" onClick={close}>Get Started →</a>
       </div>
     </header>
