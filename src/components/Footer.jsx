@@ -46,8 +46,8 @@ export default function Footer() {
           <div>
             <h4>Get In Touch</h4>
             <ul className="footer-links">
-              <li><a href="tel:+18001234567">+1 (800) 123-4567</a></li>
-              <li><a href="mailto:info@itncloud.com">info@itncloud.com</a></li>
+              <li><a href="tel:+17542511550">+1 (754) 251-1550</a></li>
+              <li><a href="mailto:info@itncloudsolutions.com">info@itncloudsolutions.com</a></li>
               <li><a href="#contact">Get a Free Quote</a></li>
               <li><a href="#contact">Support Portal</a></li>
             </ul>

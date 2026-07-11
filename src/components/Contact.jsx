@@ -12,7 +12,7 @@ const contactItems = [
   },
   {
     label: 'Email',
-    value: 'info@itncloud.com',
+    value: 'info@itncloudsolutions.com',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#3b9eff" strokeWidth="2" width="20" height="20">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -42,11 +42,36 @@ const contactItems = [
   },
 ]
 
+const initialForm = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  company: '',
+  service: '',
+  message: '',
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState(initialForm)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const subject = encodeURIComponent('Website Inquiry from ' + form.firstName + ' ' + form.lastName)
+    const body = encodeURIComponent(
+      'First Name: ' + form.firstName + '\n' +
+      'Last Name: ' + form.lastName + '\n' +
+      'Business Email: ' + form.email + '\n' +
+      'Company: ' + form.company + '\n' +
+      'Service of Interest: ' + form.service + '\n\n' +
+      'Message:\n' + form.message
+    )
+    window.location.href = 'mailto:info@itncloudsolutions.com?subject=' + subject + '&body=' + body
     setSubmitted(true)
   }
 
@@ -92,24 +117,24 @@ export default function Contact() {
                   <div className="form-row">
                     <div className="form-group">
                       <label>First Name</label>
-                      <input type="text" placeholder="John" required />
+                      <input type="text" name="firstName" placeholder="John" required value={form.firstName} onChange={handleChange} />
                     </div>
                     <div className="form-group">
                       <label>Last Name</label>
-                      <input type="text" placeholder="Smith" required />
+                      <input type="text" name="lastName" placeholder="Smith" required value={form.lastName} onChange={handleChange} />
                     </div>
                   </div>
                   <div className="form-group">
                     <label>Business Email</label>
-                    <input type="email" placeholder="john@company.com" required />
+                    <input type="email" name="email" placeholder="john@company.com" required value={form.email} onChange={handleChange} />
                   </div>
                   <div className="form-group">
                     <label>Company Name</label>
-                    <input type="text" placeholder="Your Company Inc." />
+                    <input type="text" name="company" placeholder="Your Company Inc." value={form.company} onChange={handleChange} />
                   </div>
                   <div className="form-group">
                     <label>Service of Interest</label>
-                    <select>
+                    <select name="service" value={form.service} onChange={handleChange}>
                       <option value="">Select a service...</option>
                       <option>Network Management</option>
                       <option>Cloud Solutions</option>
@@ -122,7 +147,7 @@ export default function Contact() {
                   </div>
                   <div className="form-group">
                     <label>Message</label>
-                    <textarea placeholder="Tell us about your IT needs..." required />
+                    <textarea name="message" placeholder="Tell us about your IT needs..." required value={form.message} onChange={handleChange} />
                   </div>
                   <button type="submit" className="btn-submit">Send Message →</button>
                 </form>
