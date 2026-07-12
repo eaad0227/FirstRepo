@@ -49,7 +49,7 @@ export default function Footer() {
               <li><a href="tel:+17542511550">+1 (754) 251-1550</a></li>
               <li><a href="mailto:info@itncloudsolutions.com">info@itncloudsolutions.com</a></li>
               <li><a href="#contact">Get a Free Quote</a></li>
-              <li><a href="https://assist.italegroup.com/client/itncloudsolutions">Support Portal</a></li>
+              <li><a href="https://assist.italegroup.com/client/itncloudsolutions" target="_blank" rel="noopener noreferrer">Support Portal</a></li>
             </ul>
           </div>
         </div>
