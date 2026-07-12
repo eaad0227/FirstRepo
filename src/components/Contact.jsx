@@ -21,8 +21,8 @@ const contactItems = [
     ),
   },
   {
-    label: 'Office',
-    value: <>123 Tech Boulevard, Suite 400<br />San Jose, CA 95110</>,
+    label: 'Service Area',
+    value: 'Serving South Florida & Nationwide',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#3b9eff" strokeWidth="2" width="20" height="20">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -142,6 +142,7 @@ export default function Contact() {
                       <option>Help Desk Support</option>
                       <option>Backup &amp; Recovery</option>
                       <option>IT Consulting</option>
+                      <option>AI Business Automation</option>
                       <option>Other</option>
                     </select>
                   </div>
