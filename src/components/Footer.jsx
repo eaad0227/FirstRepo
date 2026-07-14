@@ -7,14 +7,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                  <path d="M2 17l10 5 10-5" />
-                  <path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              IT n Cloud Solutions
+              <img src="/logo.jpg" alt="IT N Cloud Solutions" style={{ height: '44px', borderRadius: '6px', display: 'block' }} />
             </div>
             <p>
               Your trusted partner for managed IT services and cloud solutions.
