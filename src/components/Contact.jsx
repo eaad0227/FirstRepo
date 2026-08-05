@@ -51,10 +51,8 @@ const initialForm = {
   message: '',
 }
 
-// ─── Web3Forms ────────────────────────────────────────────────────────────────
-// Get a free access key at https://web3forms.com — enter info@itncloudsolutions.com,
-// confirm via email, then paste the key below. Submissions deliver to that inbox.
-const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'
+// Web3Forms access key — public by design; delivers submissions to info@itncloudsolutions.com
+const WEB3FORMS_ACCESS_KEY = '8261673e-01be-44d4-a273-60a0c0aa95b4'
 
 export default function Contact() {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
@@ -71,25 +69,6 @@ export default function Contact() {
     // Honeypot: real users leave this hidden checkbox untouched. Bots that
     // auto-fill every field trip it, and we silently drop the submission.
     if (e.target.botcheck && e.target.botcheck.checked) {
-      setStatus('success')
-      setForm(initialForm)
-      setTimeout(() => setStatus('idle'), 6000)
-      return
-    }
-
-    // Until a real Web3Forms key is added, fall back to opening the user's
-    // email client so the form still does something useful.
-    if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
-      const subject = encodeURIComponent(`Website Inquiry from ${form.firstName} ${form.lastName}`)
-      const body = encodeURIComponent(
-        `First Name: ${form.firstName}\n` +
-        `Last Name: ${form.lastName}\n` +
-        `Business Email: ${form.email}\n` +
-        `Company: ${form.company}\n` +
-        `Service of Interest: ${form.service}\n\n` +
-        `Message:\n${form.message}`
-      )
-      window.location.href = `mailto:info@itncloudsolutions.com?subject=${subject}&body=${body}`
       setStatus('success')
       setForm(initialForm)
       setTimeout(() => setStatus('idle'), 6000)
