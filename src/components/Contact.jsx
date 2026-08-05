@@ -68,6 +68,15 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // Honeypot: real users leave this hidden checkbox untouched. Bots that
+    // auto-fill every field trip it, and we silently drop the submission.
+    if (e.target.botcheck && e.target.botcheck.checked) {
+      setStatus('success')
+      setForm(initialForm)
+      setTimeout(() => setStatus('idle'), 6000)
+      return
+    }
+
     // Until a real Web3Forms key is added, fall back to opening the user's
     // email client so the form still does something useful.
     if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
@@ -99,6 +108,7 @@ export default function Contact() {
       company: form.company,
       service: form.service,
       message: form.message,
+      botcheck: false,
     }
 
     try {
@@ -164,6 +174,15 @@ export default function Contact() {
               <>
                 <h3>Send Us a Message</h3>
                 <form onSubmit={handleSubmit}>
+                  {/* Honeypot field — hidden from real users, catches spam bots */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <div className="form-row">
                     <div className="form-group">
                       <label>First Name</label>
