@@ -51,8 +51,13 @@ const initialForm = {
   message: '',
 }
 
+// ─── Web3Forms ────────────────────────────────────────────────────────────────
+// Get a free access key at https://web3forms.com — enter info@itncloudsolutions.com,
+// confirm via email, then paste the key below. Submissions deliver to that inbox.
+const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE'
+
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [form, setForm] = useState(initialForm)
 
   const handleChange = (e) => {
@@ -60,19 +65,64 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent('Website Inquiry from ' + form.firstName + ' ' + form.lastName)
-    const body = encodeURIComponent(
-      'First Name: ' + form.firstName + '\n' +
-      'Last Name: ' + form.lastName + '\n' +
-      'Business Email: ' + form.email + '\n' +
-      'Company: ' + form.company + '\n' +
-      'Service of Interest: ' + form.service + '\n\n' +
-      'Message:\n' + form.message
-    )
-    window.location.href = 'mailto:info@itncloudsolutions.com?subject=' + subject + '&body=' + body
-    setSubmitted(true)
+
+    // Until a real Web3Forms key is added, fall back to opening the user's
+    // email client so the form still does something useful.
+    if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+      const subject = encodeURIComponent(`Website Inquiry from ${form.firstName} ${form.lastName}`)
+      const body = encodeURIComponent(
+        `First Name: ${form.firstName}\n` +
+        `Last Name: ${form.lastName}\n` +
+        `Business Email: ${form.email}\n` +
+        `Company: ${form.company}\n` +
+        `Service of Interest: ${form.service}\n\n` +
+        `Message:\n${form.message}`
+      )
+      window.location.href = `mailto:info@itncloudsolutions.com?subject=${subject}&body=${body}`
+      setStatus('success')
+      setForm(initialForm)
+      setTimeout(() => setStatus('idle'), 6000)
+      return
+    }
+
+    setStatus('submitting')
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `Website Inquiry from ${form.firstName} ${form.lastName}`,
+      from_name: 'IT n Cloud Solutions Website',
+      name: `${form.firstName} ${form.lastName}`,
+      email: form.email,
+      replyto: form.email,
+      company: form.company,
+      service: form.service,
+      message: form.message,
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        setStatus('success')
+        setForm(initialForm)
+        // Bring the empty form back after a few seconds
+        setTimeout(() => setStatus('idle'), 6000)
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -100,7 +150,7 @@ export default function Contact() {
           </div>
 
           <div className="contact-form">
-            {submitted ? (
+            {status === 'success' ? (
               <div className="form-success">
                 <div className="form-success-icon">
                   <svg viewBox="0 0 24 24" fill="none" stroke="#1a5fa8" strokeWidth="2.5" width="32" height="32">
@@ -150,7 +200,15 @@ export default function Contact() {
                     <label>Message</label>
                     <textarea name="message" placeholder="Tell us about your IT needs..." required value={form.message} onChange={handleChange} />
                   </div>
-                  <button type="submit" className="btn-submit">Send Message →</button>
+                  {status === 'error' && (
+                    <p className="form-error-msg">
+                      Something went wrong sending your message. Please try again, or email
+                      us directly at info@itncloudsolutions.com.
+                    </p>
+                  )}
+                  <button type="submit" className="btn-submit" disabled={status === 'submitting'}>
+                    {status === 'submitting' ? 'Sending…' : 'Send Message →'}
+                  </button>
                 </form>
               </>
             )}

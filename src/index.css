@@ -729,6 +729,19 @@ section { padding: 5.5rem 0; }
   transform: translateY(-1px);
 }
 
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-error-msg {
+  color: #d94141;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
+}
+
 .form-success {
   text-align: center;
   padding: 2.5rem 1rem;
